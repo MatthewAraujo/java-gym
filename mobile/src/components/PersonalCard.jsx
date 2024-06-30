@@ -3,9 +3,10 @@ import { HStack, Heading, Image, Text, VStack, Icon } from 'native-base'
 import { Entypo } from '@expo/vector-icons'
 import { api } from '../services/api'
 
-export function ExerciseCard({ data, ...rest }) {
+export function PersonalCard({data}){
+  console.log(data)
   return (
-    <TouchableOpacity {...rest}>
+    <TouchableOpacity>
       <HStack
         bg="gray.500"
         alignItems="center"
@@ -16,9 +17,9 @@ export function ExerciseCard({ data, ...rest }) {
       >
         <Image
           source={{
-            uri: `${api.defaults.baseURL}exercise/thumb/${data.thumb}`
+            uri: `${data.avatar}`
           }}
-          alt="Imagem do exercício"
+          alt="Imagem do personal"
           w={16}
           h={16}
           rounded="md"
@@ -32,7 +33,11 @@ export function ExerciseCard({ data, ...rest }) {
           </Heading>
 
           <Text fontSize="sm" color="gray.200" mt={1} numberOfLines={2}>
-            {data.series} séries x {data.repetitions} repetições
+            {data.email}
+          </Text>
+
+          <Text fontSize="sm" color="gray.200" mt={1} numberOfLines={2}>
+            {data.phone}
           </Text>
         </VStack>
 
@@ -40,4 +45,5 @@ export function ExerciseCard({ data, ...rest }) {
       </HStack>
     </TouchableOpacity>
   )
+  
 }

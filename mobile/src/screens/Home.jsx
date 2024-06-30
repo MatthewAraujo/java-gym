@@ -6,6 +6,7 @@ import { AppError } from '../utils/AppError'
 import { HomeHeader } from '../components/HomeHeader'
 import { Group } from '../components/Group'
 import { Loading } from '../components/Loading'
+import { ExerciseCard } from '../components/ExerciseCard'
 
 
 export function Home() {
@@ -13,6 +14,7 @@ export function Home() {
   const [groups, setGrous] = useState([])
   const [exercises, setExercises] = useState([])
   const [groupSelected, setGroupSetected] = useState('')
+  const [Personals, setPersonals] = useState([])
 
   const toast = useToast()
   const navigation = useNavigation()
@@ -76,7 +78,7 @@ export function Home() {
   return (
     <VStack flex={1}>
       <HomeHeader />
-
+     
       <FlatList
         data={groups}
         keyExtractor={item => item}
@@ -103,7 +105,7 @@ export function Home() {
             <Heading color="gray.200" fontSize="md" fontFamily="heading">
               Exercícios
             </Heading>
-
+            
             <Text color="gray.200" fontSize="sm">
               {exercises.length}
             </Text>

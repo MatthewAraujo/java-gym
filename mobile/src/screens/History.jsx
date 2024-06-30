@@ -5,9 +5,10 @@ import { AppError } from '../utils/AppError'
 import { Loading } from '../components/Loading'
 import { HistoryCard } from '../components/HistoryCard'
 import { api } from '../services/api'
+import { ScreenHeader } from '../components/ScreenHeader'
 
 
-export function History() {
+export function History() { 
   const [isLoading, setIsLoading] = useState(true)
   const [exercises, setExercises] = useState([])
 

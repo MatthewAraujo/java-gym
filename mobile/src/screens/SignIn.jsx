@@ -18,8 +18,6 @@ import {
 
 import LogoSvg from '../assets/logo.svg'; // Check if this is a valid React component
 import BackgroundImg from '../assets/background.png'; // Check if this is a valid image source
-console.log('LogoSvg:', LogoSvg);
-console.log('BackgroundImg:', BackgroundImg);
 import { useAuth } from '../hooks/useAuth';
 import { AppError } from '../utils/AppError';
 import { Input } from '../components/Input';

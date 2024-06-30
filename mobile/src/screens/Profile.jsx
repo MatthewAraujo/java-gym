@@ -22,10 +22,10 @@ import * as FileSystem from 'expo-file-system'
 import { useAuth } from '../hooks/useAuth'
 import { api } from '../services/api'
 import { AppError } from '../utils/AppError'
-import { ScreenHeader } from '../components/ScreenHeader'
 import { UserPhoto } from '../components/UserPhoto'
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
+import { ScreenHeader } from '../components/ScreenHeader'
 
 const PHOTO_SIZE = 33
 

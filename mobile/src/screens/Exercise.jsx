@@ -30,7 +30,7 @@ export function Exercise() {
   const [sendingRegister, setSendingRegister] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [exercise, setExercise] = useState({} )
-  const navigation = useNavigation(AppNavigatorRoutesProps)
+  const navigation = useNavigation()
 
   const route = useRoute()
   const toast = useToast()
@@ -139,7 +139,7 @@ export function Exercise() {
                 h={80}
                 source={{
                   uri: exercise.demo
-                    ? `${api.defaults.baseURL}/exercise/demo/${exercise.demo}`
+                    ? `${api.defaults.baseURL}exercise/demo/${exercise.demo}`
                     : ''
                 }}
                 alt="Nome do exercicio"

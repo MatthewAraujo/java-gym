@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Platform } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { api } from '../services/api'
-
+import { api } from '../services/api';
 
 import {
   VStack,
-  Text,
   Center,
   Heading,
   ScrollView,
   KeyboardAvoidingView,
-  useToast
+  useToast,
+  Select,
+  CheckIcon,
+  FormControl,
+  Box,
 } from 'native-base';
 
 import { Input } from '../components/Input';
@@ -30,6 +32,7 @@ const exerciseSchema = yup.object({
 
 export function FormExercise() {
   const [isLoading, setIsLoading] = useState(false);
+  const [groups, setGroups] = useState([]);
   const toast = useToast();
   const navigation = useNavigation();
 
@@ -37,11 +40,34 @@ export function FormExercise() {
     resolver: yupResolver(exerciseSchema)
   });
 
+  useEffect(() => {
+    async function fetchGroups() {
+      try {
+        const response = await api.get('/groups');
+        setGroups(response.data);
+        console.log('Groups fetched:', response.data);
+      } catch (error) {
+        const isAppError = error instanceof AppError;
+        const title = isAppError
+          ? error.message
+          : 'Não foi possível carregar os grupos musculares.';
+
+        toast.show({
+          title,
+          placement: 'top',
+          bgColor: 'red.500'
+        });
+      }
+    }
+
+    fetchGroups();
+  }, []);
+
   async function onSubmit(data) {
     try {
       setIsLoading(true);
       
-      console.log(data)
+      console.log('Form data:', data);
       await api.post('/exercises', data);
 
       toast.show({
@@ -54,10 +80,10 @@ export function FormExercise() {
     } catch (error) {
       const isAppError = error instanceof AppError;
       const title = isAppError
-      console.log(error)
         ? error.message
         : 'Não foi possível cadastrar o exercício. Tente novamente mais tarde.';
 
+      console.error('Error submitting form:', error);
       toast.show({
         title,
         placement: 'top',
@@ -128,12 +154,29 @@ export function FormExercise() {
               control={control}
               name="group"
               render={({ field: { onChange, value } }) => (
-                <Input
-                  placeholder="Grupo Muscular"
-                  onChangeText={onChange}
-                  value={value}
-                  errorMessage={errors.group?.message}
-                />
+                <FormControl isInvalid={errors.group}>
+                  <Box mb={4}>
+                    <Select
+                      selectedValue={value}
+                      minWidth="200"
+                      accessibilityLabel="Escolha o grupo muscular"
+                      placeholder="Escolha o grupo muscular"
+                      _selectedItem={{
+                        bg: "teal.600",
+                        endIcon: <CheckIcon size="5" />
+                      }}
+                      mt={1}
+                      onValueChange={onChange}
+                    >
+                      {groups.map((group) => (
+                        <Select.Item key={group} label={group} value={group} />
+                      ))}
+                    </Select>
+                    <FormControl.ErrorMessage>
+                      {errors.group?.message}
+                    </FormControl.ErrorMessage>
+                  </Box>
+                </FormControl>
               )}
             />
 

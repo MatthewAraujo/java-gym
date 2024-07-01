@@ -122,7 +122,8 @@ export function SignUp() {
               name="name"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  placeholder="Nome"
+                  placeholder="Nome"             
+                  color={errors.email ? 'red.500' : 'white'}
                   onChangeText={onChange}
                   value={value}
                   errorMessage={errors.name?.message}
@@ -138,6 +139,7 @@ export function SignUp() {
                   placeholder="E-mail"
                   keyboardType="email-address"
                   autoCapitalize="none"
+                  color={errors.email ? 'red.500' : 'white'}
                   onChangeText={onChange}
                   value={value}
                   errorMessage={errors.email?.message}
@@ -150,7 +152,8 @@ export function SignUp() {
               name="password"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  placeholder="Senha"
+                  placeholder="Senha"                 
+                  color={errors.email ? 'red.500' : 'white'}
                   secureTextEntry
                   onChangeText={onChange}
                   value={value}
@@ -164,7 +167,8 @@ export function SignUp() {
               name="password_confirm"
               render={({ field: { onChange, value } }) => (
                 <Input
-                  placeholder="Confirme a Senha"
+                  placeholder="Confirme a Senha"                  
+                  color={errors.email ? 'red.500' : 'white'}
                   secureTextEntry
                   onChangeText={onChange}
                   value={value}

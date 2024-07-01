@@ -11,6 +11,19 @@ const cors = require("cors");
 
 const app = express();
 
+const runMigrationsAndSeeds = require("./database/runMigrationsAndSeeds");
+async function main() {
+  const result = await runMigrationsAndSeeds();
+  if (!result.success) {
+    // Lidar com o erro apropriadamente sem crashar a aplicação
+    console.error('Failed to run migrations and seeds:', result.error);
+  } else {
+    console.log('Migrations and seeds ran successfully.');
+  }
+}
+
+main();
+
 app.use("/avatar", express.static(uploadConfig.UPLOADS_FOLDER));
 
 const demoExercisePath = path.resolve(__dirname, "..", "exercises", "gif")
@@ -45,5 +58,5 @@ app.use((err, request, response, next) => {
   });
 });
 
-const PORT = 3333;
+const PORT = 8080;
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));

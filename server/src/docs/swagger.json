@@ -303,6 +303,52 @@
                         "description": "Bad Request"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Exercise"
+                ],
+                "summary": "Create",
+                "description": "Create a new exercise",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "series": {
+                                        "type": "number"
+                                    },
+                                    "repetitions": {
+                                        "type": "number"
+                                    },
+                                    "group": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "Rosca alternada com banco inclinado",
+                                    "series": 4,
+                                    "repetitions": "10 a 12",
+                                    "group": "bíceps",
+                                    "demo": "rosca.gif",
+                                    "thumb": "rosca.png"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
             }
         },
         "/exercises/{id}": {

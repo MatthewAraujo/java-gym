@@ -497,6 +497,59 @@
                     }
                 }
             }
+        },
+        "/personal": {
+            "get": {
+                "summary": "Retorna a lista de todos os personal",
+                "tags": ["Personal"],
+                "responses": {
+                    "200": {
+                        "description": "Lista de pessoas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                "type": "object",
+                                "items": {
+                                    "$ref": "#/components/schemas/Personal"
+                                }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Personal": {
+                "type": "object",
+                "required": ["name", "email", "phone"],
+                "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "ID do usuário"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nome do usuário"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email do usuário"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Telefone do usuário"
+                }
+                },
+                "example": {
+                "id": 1,
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+                "phone": "1234567890"
+                }
+            }
         }
     }
 }

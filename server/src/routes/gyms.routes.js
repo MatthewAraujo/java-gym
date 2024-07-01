@@ -7,9 +7,9 @@ const gymRoutes = Router();
 const gymController = new GymController();
 
 
-gymRoutes.get("/", GymController.index);
-gymRoutes.post("/", GymController.create);
-gymRoutes.put("/:id", GymController.update);
-gymRoutes.delete("/:id", GymController.delete);
+gymRoutes.get("/", gymController.index);
+gymRoutes.post("/", gymController.create);
+gymRoutes.put("/:id", gymController.update);
+gymRoutes.delete("/:id", gymController.delete);
 
 module.exports = gymRoutes;

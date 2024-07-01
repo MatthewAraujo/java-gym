@@ -5,25 +5,25 @@ import { api } from '../services/api'
 import { AppError } from '../utils/AppError'
 import { HomeHeader } from '../components/HomeHeader'
 import { Loading } from '../components/Loading'
-import { PersonalCard } from '../components/PersonalCard'
+import { GymCard } from '../components/GymCard'
 
 
-export function Personals() {
+export function Gym() {
   const [isLoading, setIsLoading] = useState(true)
-  const [personal, setPersonals] = useState([])
+  const [gym, setGyms] = useState([])
 
   const toast = useToast()
 
-  async function fetchPersonals() {
+  async function fetchGyms() {
     try {
-      const response = await api.get('/personal')
+      const response = await api.get('/gym')
 
-      setPersonals(response.data)
+      setGyms(response.data)
     } catch (error) {
       const isAppError = error instanceof AppError
       const title = isAppError
         ? error.message
-        : 'Não foi possível carregar os personais.'
+        : 'Não foi possível carregas as academias.'
 
       toast.show({
         title,
@@ -37,7 +37,7 @@ export function Personals() {
   
   useFocusEffect(
     useCallback(() => {
-      fetchPersonals()
+      fetchGyms()
     }, [])
   )
 
@@ -52,18 +52,18 @@ export function Personals() {
         <VStack flex={1} px={8}>
           <HStack justifyContent="space-between" mb={5}>
             <Heading color="gray.200" fontSize="md" mt={5} fontFamily="heading">
-              Personais
+              Academias
             </Heading>
             
             <Text color="gray.200" fontSize="sm">
-              {personal.length} personal(s) cadastrado(s)
+              {gym.length} Academias disponível(is)
             </Text>
           </HStack>
 
           <FlatList
-            data={personal}
+            data={gym}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <PersonalCard data={item} />}
+            renderItem={({ item }) => <GymCard data={item} />}
             showsVerticalScrollIndicator={false}
             _contentContainerStyle={{ paddingBottom: 20 }}
           />

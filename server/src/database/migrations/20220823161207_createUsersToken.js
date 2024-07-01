@@ -6,4 +6,4 @@ exports.up = knex => knex.schema.createTable("refresh_token", table => {
   table.timestamp("created_at").default(knex.fn.now());
 });
 
-exports.down = knex => knex.schema.dropTable("users_tokens");
+exports.down = knex => knex.schema.dropTable("refresh_token");

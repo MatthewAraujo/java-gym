@@ -8,11 +8,13 @@ import HomeSvg from '../assets/home.svg'
 import HistorySvg from '../assets/history.svg'
 import PersonalsSvg from '../assets/personal.svg'
 import ProfileSvg from '../assets/profile.svg'
+import GymSvg from '../assets/gym.svg'
 import { Home } from '../screens/Home'
 import { History } from '../screens/History'
 import { Profile } from '../screens/Profile'
 import { Exercise } from '../screens/Exercise'
 import { Personals } from '../screens/Personals'
+import { Gym } from '../screens/Gym'
 
 
 const { Navigator, Screen } = createBottomTabNavigator()
@@ -53,6 +55,16 @@ export function AppRoutes() {
         options={{
           tabBarIcon: ({ color }) => (
             <PersonalsSvg fill={color} width={iconSize} height={iconSize} />
+          )
+        }}
+      />
+
+<Screen 
+        name="gyms"
+        component={Gym}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <GymSvg fill={color} width={iconSize} height={iconSize} />
           )
         }}
       />

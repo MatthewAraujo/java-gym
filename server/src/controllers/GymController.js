@@ -2,12 +2,9 @@ const knex = require("../database");
 
 class GymController {
     async index(request, response) {
-        const { user_id } = request.params;
-    
+        
         const gyms = await knex("gym")
-            .where({ gym_id })
             .select("gym_id", "gym_name", "address", "city", "operating_hours");
-    
         return response.json(gyms);
     }
     

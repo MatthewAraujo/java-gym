@@ -16,6 +16,8 @@ class ExercisesController {
 
     return response.json(exercise);
   }
+
+  
 }
 
 module.exports = ExercisesController;

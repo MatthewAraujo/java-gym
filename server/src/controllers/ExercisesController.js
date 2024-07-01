@@ -27,6 +27,8 @@ class ExercisesController {
         series,
         repetitions,
         group,
+        demo: "",
+        thumb: ""
     });
 
     return response.status(201).json();

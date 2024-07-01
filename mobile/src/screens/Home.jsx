@@ -133,7 +133,7 @@ export function Home() {
             showsVerticalScrollIndicator={false}
             _contentContainerStyle={{ paddingBottom: 20 }}
           />
-          {user.email == "matthew@gmail.com" ?(
+          {user.email == "joaodorea300@gmail.com" ?(
           <Button
               title="Adicionar exercício"
               variant="outline"

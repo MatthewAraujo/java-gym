@@ -1,5 +1,5 @@
 exports.up = knex => knex.schema.createTable("exercises", table => {
-  table.increments("id");
+  table.increments("id").unsigned(); // Define 'id' como 'unsigned integer'
   table.text("name").notNullable();
   table.integer("series").notNullable();
   table.integer("repetitions").notNullable();

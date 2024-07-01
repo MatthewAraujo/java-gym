@@ -8,6 +8,7 @@ const gymController = new GymController();
 
 
 gymRoutes.get("/", gymController.index);
+gymRoutes.get("/:id", gymController.show);
 gymRoutes.post("/", gymController.create);
 gymRoutes.put("/:id", gymController.update);
 gymRoutes.delete("/:id", gymController.delete);

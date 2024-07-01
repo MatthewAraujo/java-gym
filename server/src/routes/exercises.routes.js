@@ -8,5 +8,6 @@ const exercisesController = new ExercisesController();
 
 exercisesRoutes.get("/bygroup/:group", exercisesController.index);
 exercisesRoutes.get("/:id", exercisesController.show);
+exercisesRoutes.post("/", exercisesController.create);
 
 module.exports = exercisesRoutes;

@@ -7,9 +7,15 @@ import { HomeHeader } from '../components/HomeHeader'
 import { Group } from '../components/Group'
 import { Loading } from '../components/Loading'
 import { ExerciseCard } from '../components/ExerciseCard'
+import { Button } from '../components/Button'
+
+import { useAuth } from '../hooks/useAuth'
 
 
 export function Home() {
+
+  const { user, signOut } = useAuth()
+  
   const [isLoading, setIsLoading] = useState(true)
   const [groups, setGrous] = useState([])
   const [exercises, setExercises] = useState([])
@@ -21,6 +27,10 @@ export function Home() {
 
   function handleOpenExerciseDetails(exerciseId) {
     navigation.navigate('exercise', { exerciseId })
+  }
+
+  function handleOpenFormExercise(){
+    navigation.navigate('formExercise')
   }
 
   async function fetchGroups() {
@@ -123,6 +133,14 @@ export function Home() {
             showsVerticalScrollIndicator={false}
             _contentContainerStyle={{ paddingBottom: 20 }}
           />
+          {user.email == "matthew@gmail.com" ?(
+          <Button
+              title="Adicionar exercício"
+              variant="outline"
+              onPress = {() => handleOpenFormExercise()}
+              mb = {5}
+              
+            />) : (<></>)}
         </VStack>
       )}
     </VStack>

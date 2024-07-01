@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import {useFocusEffect } from '@react-navigation/native'
+import {useNavigation,useFocusEffect } from '@react-navigation/native'
 import { VStack, FlatList, HStack, Heading, Text, useToast } from 'native-base'
 import { api } from '../services/api'
 import { AppError } from '../utils/AppError'
@@ -12,6 +12,12 @@ export function Gym() {
   const [isLoading, setIsLoading] = useState(true)
   const [gym, setGyms] = useState([])
 
+  const navigation = useNavigation()
+
+  function handleOpenGymDetails(gymId) {
+    navigation.navigate('gym-details', { gymId })
+  }
+
   const toast = useToast()
 
   async function fetchGyms() {
@@ -23,7 +29,7 @@ export function Gym() {
       const isAppError = error instanceof AppError
       const title = isAppError
         ? error.message
-        : 'Não foi possível carregas as academias.'
+        : 'Não foi possível carregar as academias.'
 
       toast.show({
         title,
@@ -63,7 +69,7 @@ export function Gym() {
           <FlatList
             data={gym}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <GymCard data={item} />}
+            renderItem={({ item }) => <GymCard onPress={() => handleOpenGymDetails(item.id)} data={item} />}
             showsVerticalScrollIndicator={false}
             _contentContainerStyle={{ paddingBottom: 20 }}
           />

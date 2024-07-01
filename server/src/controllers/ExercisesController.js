@@ -17,6 +17,21 @@ class ExercisesController {
     return response.json(exercise);
   }
 
+
+  async create(request, response) {
+    const { name, series, repetitions, group } = request.body;
+
+
+    await knex("exercises").insert({
+        name,
+        series,
+        repetitions,
+        group,
+    });
+
+    return response.status(201).json();
+}
+
   
 }
 

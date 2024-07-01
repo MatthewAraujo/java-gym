@@ -9,19 +9,12 @@ class GymController {
     }
     
     async show(request, response) {
-        const { gym_id } = request.params;
+        const { id } = request.params;
     
-        const gym = await knex("gym")
-            .where({ gym_id })
-            .select("gym_id", "gym_name", "address", "city", "operating_hours")
-            .first();
-    
-        if (!gym) {
-            return response.status(404).json({ error: "Gym not found" });
-        }
+        const gym = await knex("gym").where({ id }).first();
     
         return response.json(gym);
-    }
+      }
     
     async create(request, response) {
         const { gym_name, address, city, operating_hours } = request.body;

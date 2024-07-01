@@ -15,6 +15,9 @@ import { Profile } from '../screens/Profile'
 import { Exercise } from '../screens/Exercise'
 import { Personals } from '../screens/Personals'
 import { Gym } from '../screens/Gym'
+import { GymDetails } from '../screens/GymDetails'
+import {FormExercise} from '../screens/FormExercise'
+
 
 
 const { Navigator, Screen } = createBottomTabNavigator()
@@ -91,6 +94,19 @@ export function AppRoutes() {
         component={Exercise}
         options={{ tabBarButton: () => null }}
       />
+
+      <Screen
+        name="gym-details"
+        component={GymDetails}
+        options={{ tabBarButton: () => null }}
+      />
+
+<Screen
+        name="formExercise"
+        component={FormExercise}
+        options={{ tabBarButton: () => null }}
+      />
+     
     </Navigator>
   )
 }
